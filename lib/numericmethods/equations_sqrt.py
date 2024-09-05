@@ -61,7 +61,7 @@ class BisectMethod:
                 self.last_equation_str = self.equation_str
     
     def __init__(self):
-        self.__console = Console()
+        self.__console = Console(record=True)
         self.__data_text = ""
         self.updateScreen()
     
@@ -85,6 +85,45 @@ class BisectMethod:
         self.__console.print(f"\n[red bold][u]No hay una ecuación definida.[/u][/red bold]")
         if try_to_define:
             self.defineEquation()
+            
+    def __plotResults(self, column_i: list, column_a: list, column_b: list, column_f_a: list, column_f_b: list, column_xi: list, column_f_xi: list, column_abs_f_xi: list, column_eactual_less_eallowed: list):
+        x = sp.symbols('x')
+        equation = sp.sympify(self.equation_str)
+        f = sp.lambdify(x, equation, 'numpy')
+        
+        
+        # Puntos para graficar la función
+        x = np.linspace(self.a - 0.5, self.b + 0.5, 400)
+        y = f(x)
+
+        # Crear la gráfica
+        plt.figure(figsize=(8, 6))
+        plt.plot(x, y, 'b-', label='f(x)')  # Función
+        plt.axhline(0, color='black', linewidth=0.8)  # Eje x
+        plt.axvline(0, color='black', linewidth=0.8)  # Eje y
+
+        # Marcar los puntos a, b, y xm
+        plt.plot(column_a, column_f_a, 'ro', label='f(a)')
+        plt.plot(column_b, column_f_b, 'ro', label='f(b)')
+        plt.plot(column_xi, column_f_xi, 'ro', label='f(xi)')
+        plt.axvline(column_a[-1], color='red', linestyle='--')
+        plt.axvline(column_b[-1], color='red', linestyle='--')
+        plt.axvline(column_xi[-1], color='black', linestyle='--')
+        
+        plt.axhline(column_f_a[-1], color='red', linestyle='--')  # Último valor de 'f(a)'
+        plt.axhline(column_f_b[-1], color='red', linestyle='--')  # Último valor de 'f(b)'
+
+        # Etiquetas y título
+        plt.xlabel('x')
+        plt.ylabel('f(x)')
+        plt.title('Método de Bisección')
+        plt.legend()
+        plt.grid(True)
+
+        # Mostrar la gráfica
+        plt.show()
+                
+        
 
     def start(self):
         while self.equation_str == "":
@@ -101,15 +140,15 @@ class BisectMethod:
         
         nextIteration = True
         
-        iterationsColumn = []
-        aColumn = []
-        bColumn = []
-        faColumn = []
-        fbColumn = []
-        xiColumn = []
-        fxiColumn = []
-        fxiAbsColumn = []
-        eActualLessThanEpColumn = []
+        i_column = []
+        a_column = []
+        b_column = []
+        fa_column = []
+        fb_column = []
+        xi_column = []
+        f_xi_column = []
+        abs_f_xi_column = []
+        e_actual_less_e_allowed_column = []
         
         i = 1
         a = self.a
@@ -132,40 +171,40 @@ class BisectMethod:
             self.updateScreen()
             
             if i >= 2:
-                last_f_xi_is_negative = fxiColumn[i-2] < 0
+                last_f_xi_is_negative = f_xi_column[i-2] < 0
                 
-                last_fa_is_negative = faColumn[i-2] < 0
-                last_fb_is_negative = fbColumn[i-2] < 0
+                last_fa_is_negative = fa_column[i-2] < 0
+                last_fb_is_negative = fb_column[i-2] < 0
                 
                 if last_f_xi_is_negative:
                     if last_fa_is_negative:
-                        a = xiColumn[i-2]
+                        a = xi_column[i-2]
                         fa = f(a)
                     elif last_fb_is_negative:
-                        b = xiColumn[i-2]
+                        b = xi_column[i-2]
                         fb = f(b)
                 else:
                     if not last_fa_is_negative:
-                        a = xiColumn[i-2]
+                        a = xi_column[i-2]
                         fa = f(a)
                     elif not last_fb_is_negative:
-                        b = xiColumn[i-2]
+                        b = xi_column[i-2]
                         fb = f(b)
             
-            iterationsColumn.append(i)
-            aColumn.append(a)
-            bColumn.append(b)
-            faColumn.append(fa)
-            fbColumn.append(fb)
-            xiColumn.append((aColumn[i-1] + bColumn[i-1]) / 2)
-            fxiColumn.append(f(xiColumn[i-1]))
-            fxiAbsColumn.append(np.abs(fxiColumn[i-1]))
-            if fxiAbsColumn[i-1] <= self.ep:
-                eActualLessThanEpColumn.append('si')
+            i_column.append(i)
+            a_column.append(a)
+            b_column.append(b)
+            fa_column.append(fa)
+            fb_column.append(fb)
+            xi_column.append((a_column[i-1] + b_column[i-1]) / 2)
+            f_xi_column.append(f(xi_column[i-1]))
+            abs_f_xi_column.append(np.abs(f_xi_column[i-1]))
+            if abs_f_xi_column[i-1] <= self.ep:
+                e_actual_less_e_allowed_column.append('si')
             else: 
-                eActualLessThanEpColumn.append('no')
+                e_actual_less_e_allowed_column.append('no')
                 
-            table.add_row(str(iterationsColumn[i-1]), str(aColumn[i-1]), str(bColumn[i-1]), str(faColumn[i-1]), str(fbColumn[i-1]), str(xiColumn[i-1]), str(fxiColumn[i-1]), str(fxiAbsColumn[i-1]), str(eActualLessThanEpColumn[i-1]))
+            table.add_row(str(i_column[i-1]), str(a_column[i-1]), str(b_column[i-1]), str(fa_column[i-1]), str(fb_column[i-1]), str(xi_column[i-1]), str(f_xi_column[i-1]), str(abs_f_xi_column[i-1]), str(e_actual_less_e_allowed_column[i-1]))
             
             self.__console.print(table)
                 
@@ -174,6 +213,9 @@ class BisectMethod:
             answer = console.input("[purple italic]Siguiente Iteración? y/n <--- ")
             if answer.lower() == "n":
                 nextIteration = False
+            
+        self.__console.save_html("table.html")
+        self.__plotResults(i_column,a_column,b_column,fa_column,fb_column,xi_column,f_xi_column,abs_f_xi_column,e_actual_less_e_allowed_column)
                 
     def findAB(self, x_min: int = x_min, x_max: int = x_max, delta_x: int = delta_x):
         if delta_x <= 0:
