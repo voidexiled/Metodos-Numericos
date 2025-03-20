@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.r1 {color: #008080; text-decoration-color: #008080; font-weight: bold; text-decoration: underline}
+.r2 {color: #008080; text-decoration-color: #008080; font-weight: bold}
+.r3 {color: #808000; text-decoration-color: #808000; font-weight: bold; font-style: italic}
+.r4 {color: #808000; text-decoration-color: #808000; font-style: italic}
+.r5 {color: #000080; text-decoration-color: #000080; font-style: italic}
+.r6 {color: #000080; text-decoration-color: #000080; font-weight: bold; font-style: italic}
+.r7 {color: #800000; text-decoration-color: #800000}
+.r8 {color: #800000; text-decoration-color: #800000; font-weight: bold}
+.r9 {color: #008080; text-decoration-color: #008080}
+.r10 {color: #000080; text-decoration-color: #000080; font-weight: bold}
+.r11 {color: #000080; text-decoration-color: #000080}
+.r12 {color: #800080; text-decoration-color: #800080; font-weight: bold}
+.r13 {font-weight: bold}
+.r14 {color: #af00ff; text-decoration-color: #af00ff; font-style: italic}
+.r15 {color: #af00ff; text-decoration-color: #af00ff; font-weight: bold; font-style: italic}
+.r16 {color: #808000; text-decoration-color: #808000}
+.r17 {color: #808000; text-decoration-color: #808000; font-weight: bold}
+.r18 {font-style: italic}
+body {
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">
+                                <span class="r1">-----Raíces de ecuaciones-----</span>
+                                <span class="r2">  ---Método de Punto Fijo---  </span>
+                                <span class="r3">f(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span>
+                                <span class="r3">g(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span>
+                                <span class="r5">x0 = </span><span class="r6">0.0</span>
+                                <span class="r7">error permitido = </span><span class="r8">0.0</span>
+                                
+<span class="r9">Ecuaciones predefinidas:</span>
+<span class="r10">1</span><span class="r11">.</span> x**<span class="r2">2</span> - <span class="r2">4</span>
+<span class="r10">2</span><span class="r11">.</span> <span class="r12">sin</span><span class="r13">(</span>x<span class="r13">)</span>
+<span class="r10">3</span><span class="r11">.</span> <span class="r12">exp</span><span class="r13">(</span>x<span class="r13">)</span> - <span class="r2">2</span>
+<span class="r10">4</span><span class="r11">.</span> x**<span class="r2">3</span> - <span class="r2">2</span>*x + <span class="r2">2</span>
+<span class="r10">0</span><span class="r11">.</span> Ingresar ecuación manualmente
+<span class="r14">Seleccione una opción &lt;--- Ecuación </span><span class="r15">f(</span><span class="r14">x</span><span class="r15">)</span><span class="r14"> = </span><span class="r15">0</span><span class="r14"> --- </span>
+                                <span class="r1">-----Raíces de ecuaciones-----</span>
+                                <span class="r2">  ---Método de Punto Fijo---  </span>
+                                <span class="r3">f(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span><span class="r3">exp(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">**</span><span class="r3">(</span><span class="r4">-x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">*</span><span class="r3">cos(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> - </span><span class="r3">6</span>
+                                <span class="r3">g(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span>
+                                <span class="r5">x0 = </span><span class="r6">0.0</span>
+                                <span class="r7">error permitido = </span><span class="r8">0.0</span>
+                                
+<span class="r16">Para el método de punto fijo, debes transformar </span><span class="r17">f(</span><span class="r16">x</span><span class="r17">)</span><span class="r16"> = </span><span class="r17">0</span><span class="r16"> a x = </span><span class="r17">g(</span><span class="r16">x</span><span class="r17">)</span>
+<span class="r14">Función </span><span class="r15">g(</span><span class="r14">x</span><span class="r15">)</span><span class="r14"> --- </span>
+                                <span class="r1">-----Raíces de ecuaciones-----</span>
+                                <span class="r2">  ---Método de Punto Fijo---  </span>
+                                <span class="r3">f(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span><span class="r3">exp(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">**</span><span class="r3">(</span><span class="r4">-x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">*</span><span class="r3">cos(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> - </span><span class="r3">6</span>
+                                <span class="r3">g(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span><span class="r3">exp(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">**</span><span class="r3">(</span><span class="r4">-x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">*</span><span class="r3">cos(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> - </span><span class="r3">6</span>
+                                <span class="r5">x0 = </span><span class="r6">0.0</span>
+                                <span class="r7">error permitido = </span><span class="r8">0.0</span>
+                                
+<span class="r14">¿Deseas ingresar un punto inicial? y/n &lt;--- Punto inicial x0 &lt;--- Error permitido &lt;--- </span>
+                                <span class="r1">-----Raíces de ecuaciones-----</span>
+                                <span class="r2">  ---Método de Punto Fijo---  </span>
+                                <span class="r3">f(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span><span class="r3">exp(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">**</span><span class="r3">(</span><span class="r4">-x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">*</span><span class="r3">cos(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> - </span><span class="r3">6</span>
+                                <span class="r3">g(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> = </span><span class="r3">exp(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">**</span><span class="r3">(</span><span class="r4">-x</span><span class="r3">)</span><span class="r4"> + </span><span class="r3">2</span><span class="r4">*</span><span class="r3">cos(</span><span class="r4">x</span><span class="r3">)</span><span class="r4"> - </span><span class="r3">6</span>
+                                <span class="r5">x0 = </span><span class="r6">0.0</span>
+                                <span class="r7">error permitido = </span><span class="r8">0.001</span>
+                                
+<span class="r18">                Método de Punto Fijo                </span>
+┏━━━━━━━━━━━┳━━━━━┳━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┓
+┃<span class="r13"> Iteración </span>┃<span class="r13"> xi  </span>┃<span class="r13"> g(xi) </span>┃<span class="r13"> |xi+1 - xi| </span>┃<span class="r13"> ea &lt;= ep </span>┃
+┡━━━━━━━━━━━╇━━━━━╇━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━┩
+│ 1         │ 0.0 │ -2.0  │ inf         │ no       │
+└───────────┴─────┴───────┴─────────────┴──────────┘
+<span class="r14">Siguiente Iteración? y/n </span><span class="r15">(</span><span class="r14">&quot;.&quot;</span><span class="r14"> to run until </span><span class="r14">&quot;sí&quot;</span><span class="r15">)</span><span class="r14"> &lt;--- </span></code></pre>
+</body>
+</html>
